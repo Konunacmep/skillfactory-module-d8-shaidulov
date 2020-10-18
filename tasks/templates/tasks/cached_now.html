@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+<!-- {% load static %} -->
+
+{% block title %}Закэшированная страница с датой{% endblock %}
+
+{% block main_content %}
+{% load cache %}
+{% cache 300 current_date %}
+  <h3>{% now "d.m.Y H:i:s" %}</h3>
+{% endcache %}
+{% endblock %}

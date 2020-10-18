@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+<!-- {% load static %} -->
+
+{% block title %}Информация по категориям{% endblock %}
+
+{% block main_content %}
+  <a href="{% url 'tasks:data_now' %}">Посетить закэшированную страницу с датой</a>
+  <h1>Категории и числа</h1>
+  <ul>
+  {% for cat, count in counts.items %}
+    <li><span class="badge badge-info">{{ cat }}: {{ count }}</span></li>
+  {% empty %}
+    <li>Список задач по категориям пуст. Попробуйте добавить их из админки</li>
+  {% endfor %}
+  </ul>
+  {% if prio_counts %}
+  <h2>Количество задач с приоритетами</h2>
+    {% for k, v in prio_counts.items %}
+      <p>{{ k }}: {{ v }}</p>
+    {% endfor %}
+  {% endif %}
+{% endblock %}
